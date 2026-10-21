@@ -135,13 +135,3 @@ that it works with the real one.
   To "type" into the menu, pass `scripted_input(...)` from `tests/fakes.py` as `input_fn`;
   each argument is one answer, in order. When the answers run out, the menu exits.
 
-```python
-from runlog.cli import main
-from tests.fakes import scripted_input
-
-def test_list_on_empty_log(tmp_path, capsys):
-    path = str(tmp_path / "runs.csv")
-    main(["--file", path], input_fn=scripted_input("2", "5"))   # List runs, then Quit
-    out = capsys.readouterr().out
-    assert "No runs logged yet." in out
-```
